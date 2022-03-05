@@ -21,7 +21,12 @@ interface Props {
 const CategoriesScreen: React.FC<Props> = props => {
 	const renderGridItem: ListRenderItem<Category> = itemData => {
 		const handleCategorySelect = () => {
-			props.navigation.navigate({ routeName: "CategoryMeals" });
+			props.navigation.navigate({
+				routeName: "CategoryMeals",
+				params: {
+					categoryId: itemData.item.id,
+				},
+			});
 		};
 
 		return (
