@@ -6,12 +6,13 @@ import {
 	ViewStyle,
 	FlatList,
 	ListRenderItem,
-	Button,
 	TouchableOpacity,
+	Platform,
 } from "react-native";
 
 import Category from "models/category";
 import { NavigationScreenProp } from "react-navigation";
+import Colors from "constants/colors";
 import { CATEGORIES } from "../data/dummy-data";
 
 interface Props {
@@ -41,11 +42,9 @@ const CategoriesScreen: React.FC<Props> = props => {
 CategoriesScreen.navigationOptions = {
 	headerTitle: "Meal Categories",
 	headerStyle: {
-		backgroundColor: "#f47b20",
+		backgroundColor: Platform.OS === "android" ? Colors.primary : "white",
 	},
-	headerTint: {
-		color: "#fff",
-	},
+	headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
 };
 
 export default CategoriesScreen;
