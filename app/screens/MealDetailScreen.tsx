@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 type Props = {};
 
@@ -7,6 +7,9 @@ const MealDetailScreen: React.FC<Props> = props => {
 	return (
 		<View>
 			<Text>MealDetailScreen</Text>
+			<Button title="Go back" onPress={()=> {
+				props.navigation.popToTop();
+			}} />
 		</View>
 	);
 };
