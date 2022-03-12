@@ -1,36 +1,43 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useMemo } from "react";
+import {
+	NativeStackNavigationOptions,
+	NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 
-import { CATEGORIES } from "../data/dummy-data";
+import { MealParamList } from "navigation/MealsNavigator";
+import { CATEGORIES, MEALS } from "data/dummy-data";
 
-type Props = {};
+import MealList from "components/MealList";
+
+type Props = NativeStackScreenProps<MealParamList, "CategoryMeals">;
 
 const CategoryMealsScreen: React.FC<Props> = props => {
-	const categoryId = props.navigation.getParam("categoryId");
+	const categoryId = props.route.params.categoryId;
+
+	const handleMealSelect = (mealId: string) => {
+		props.navigation.navigate("MealDetail", {
+			mealId,
+		});
+	};
+
+	const displayedMeals = useMemo(
+		() => MEALS.filter(meal => meal.categoryIds.includes(categoryId)),
+		[categoryId]
+	);
+
+	return <MealList meals={displayedMeals} onSelectMeal={handleMealSelect} />;
+};
+
+export const screenOptions: NativeStackNavigationOptions = navigationData => {
+	const categoryId = navigationData.route.params.categoryId;
 
 	const selectedCategory = CATEGORIES.find(
 		category => category.id === categoryId
 	);
 
-	return (
-		<View>
-			<Text>THe Category Meals Screen!</Text>
-			<Text>{selectedCategory?.title}</Text>
-		</View>
-	);
-};
-
-CategoryMealsScreen.navigationOptions = navigationData => {
-	const categoryId = navigationData.navigation.getParam("categoryId");
-
-	const selectedCategory = CATEGORIES.find(category => category.id === categoryId);
-
 	return {
 		headerTitle: selectedCategory?.title,
-	}
+	};
 };
 
 export default CategoryMealsScreen;
-
-interface Styles {}
-
-const styles = StyleSheet.create<Styles>({});
