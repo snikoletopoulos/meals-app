@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -16,18 +17,21 @@ interface Props {
 }
 
 const MealList: React.FC<Props> = props => {
-	const renderMealItem: ListRenderItem<Meal> = itemData => {
-		return (
-			<MealItem
-				title={itemData.item.title}
-				duration={itemData.item.duration}
-				complexity={itemData.item.complexity}
-				affordability={itemData.item.affordability}
-				image={itemData.item.imageUrl}
-				onSelectMeal={props.onSelectMeal.bind(null, itemData.item.id)}
-			/>
-		);
-	};
+	const renderMealItem: ListRenderItem<Meal> = useCallback(
+		itemData => {
+			return (
+				<MealItem
+					title={itemData.item.title}
+					duration={itemData.item.duration}
+					complexity={itemData.item.complexity}
+					affordability={itemData.item.affordability}
+					image={itemData.item.imageUrl}
+					onSelectMeal={props.onSelectMeal.bind(null, itemData.item.id)}
+				/>
+			);
+		},
+		[props.onSelectMeal]
+	);
 
 	return (
 		<View style={styles.screen}>
