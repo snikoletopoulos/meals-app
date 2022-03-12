@@ -1,37 +1,31 @@
+import { FlatList, ListRenderItem } from "react-native";
 import {
-	StyleSheet,
-	Text,
-	View,
-	ViewStyle,
-	FlatList,
-	ListRenderItem,
-	TouchableOpacity,
-} from "react-native";
+	NativeStackNavigationOptions,
+	NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 
+import {MealParamList} from "navigation/MealsNavigator"
 import Category from "models/category";
-import { CATEGORIES } from "../data/dummy-data";
+import { CATEGORIES } from "data/dummy-data";
 
-interface Props {
-	[key: string]: any;
-}
+import CategoryGridTile from "components/CategoryGridTile";
+
+type Props = NativeStackScreenProps<MealParamList, "Categories">
 
 const CategoriesScreen: React.FC<Props> = props => {
 	const renderGridItem: ListRenderItem<Category> = itemData => {
 		const handleCategorySelect = () => {
-			props.navigation.navigate({
-				routeName: "CategoryMeals",
-				params: {
-					categoryId: itemData.item.id,
-				},
+			props.navigation.navigate("CategoryMeals", {
+				categoryId: itemData.item.id,
 			});
 		};
 
 		return (
-			<TouchableOpacity style={styles.gridItem} onPress={handleCategorySelect}>
-				<View>
-					<Text>{itemData.item.title}</Text>
-				</View>
-			</TouchableOpacity>
+			<CategoryGridTile
+				title={itemData.item.title}
+				onSelect={handleCategorySelect}
+				color={itemData.item.color}
+			/>
 		);
 	};
 
@@ -40,27 +34,8 @@ const CategoriesScreen: React.FC<Props> = props => {
 	);
 };
 
-CategoriesScreen.navigationOptions = {
+export const screenOptions: NativeStackNavigationOptions = {
 	headerTitle: "Meal Categories",
 };
 
 export default CategoriesScreen;
-
-interface Styles {
-	screen: ViewStyle;
-	gridItem: ViewStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
-	screen: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-
-	gridItem: {
-		flex: 1,
-		margin: 15,
-		height: 150,
-	},
-});
