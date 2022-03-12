@@ -12,5 +12,6 @@
 			"models/*": ["app/models/*"],
 			"constants/*": ["app/constants/*"]
 		}
-	}
+	},
+	"exclude": ["node_modules"]
 }
