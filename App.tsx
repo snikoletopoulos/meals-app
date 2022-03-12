@@ -2,9 +2,11 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
+
+import "react-native-gesture-handler";
 import { enableScreens } from "react-native-screens";
 
-import MealsNavigator from "navigation/MealsNavigator";
+import AppNavigator from "navigation/AppNavigator";
 
 enableScreens(true);
 
@@ -28,7 +30,7 @@ const App = () => {
 		);
 	}
 
-	return <MealsNavigator />;
+	return <AppNavigator />;
 };
 
 export default App;
