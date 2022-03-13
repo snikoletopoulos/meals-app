@@ -5,7 +5,9 @@ import {
 } from "@react-navigation/native-stack";
 
 import { MEALS } from "data/dummy-data";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
+import HeaderButton from "components/HeaderButton";
 import { TabParamList } from "navigation/TabNavigator";
 import MealList from "components/MealList";
 
@@ -27,8 +29,22 @@ const FavoritesScreen: React.FC<Props> = props => {
 	return <MealList meals={favoriteMeals} onSelectMeal={handleMealSelect} />;
 };
 
-export const screenOptions: NativeStackNavigationOptions = {
-	headerTitle: "Your Favorites",
+export const screenOptions = (navigationData): NativeStackNavigationOptions => {
+	return {
+		headerTitle: "Your Favorites",
+		headerLeft: props => (
+			<HeaderButtons HeaderButtonComponent={HeaderButton}>
+				<Item
+					title="Menu"
+					color={props.tintColor}
+					iconName="ios-menu"
+					onPress={() => {
+						navigationData.navigation.toggleDrawer();
+					}}
+				/>
+			</HeaderButtons>
+		),
+	};
 };
 
 export default FavoritesScreen;
