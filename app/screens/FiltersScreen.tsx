@@ -1,20 +1,51 @@
+import { useState } from "react";
+import {
+	StyleSheet,
+	Text,
+	View,
+	ViewStyle,
+	Switch,
+	TextStyle,
+	Platform,
+} from "react-native";
 import {
 	NativeStackNavigationOptions,
 	NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-import { Text, View } from "react-native";
 
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
+import FilterSwitch from "components/FilterSwitch";
 import HeaderButton from "components/HeaderButton";
 import { FiltersParamList } from "navigation/FiltersNavigator";
 
-type Props = NativeStackScreenProps<FiltersParamList, "Filters">;
+type Props = NativeStackScreenProps<FiltersParamList, "FiltersScreen">;
 
 const FiltersScreen: React.FC<Props> = props => {
+	const [isGlutenFree, setIsGlutenFree] = useState(false);
+	const [isLactoseFree, setIsLactoseFree] = useState(false);
+	const [isVegan, setIsVegan] = useState(false);
+	const [isVegetarian, setIsVegetarian] = useState(false);
+
 	return (
-		<View>
-			<Text>FiltersScreen</Text>
+		<View style={styles.screen}>
+			<Text style={styles.title}>Available Filters / Restrictions</Text>
+			<FilterSwitch
+				label="Gluten-free"
+				value={isGlutenFree}
+				onChange={setIsGlutenFree}
+			/>
+			<FilterSwitch
+				label="Lactose-free"
+				value={isLactoseFree}
+				onChange={setIsLactoseFree}
+			/>
+			<FilterSwitch label="Vegan" value={isVegan} onChange={setIsVegan} />
+			<FilterSwitch
+				label="Vegetarian"
+				value={isVegetarian}
+				onChange={setIsVegetarian}
+			/>
 		</View>
 	);
 };
@@ -36,5 +67,23 @@ export const screenOptions = (navigationData): NativeStackNavigationOptions => {
 		),
 	};
 };
-
 export default FiltersScreen;
+
+interface Styles {
+	screen: ViewStyle;
+	title: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
+	screen: {
+		flex: 1,
+		alignItems: "center",
+	},
+
+	title: {
+		fontFamily: "open-sans-bold",
+		fontSize: 22,
+		margin: 20,
+		textAlign: "center",
+	},
+});
