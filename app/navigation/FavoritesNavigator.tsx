@@ -27,6 +27,12 @@ const FavoritesNavigator: React.FC = () => {
 						backgroundColor:
 							Platform.OS === "android" ? Colors.accent : "white",
 					},
+					headerTitleStyle: {
+						fontFamily: "open-sans-bold",
+					},
+					headerBackTitleStyle: {
+						fontFamily: "open-sans",
+					},
 					headerTintColor: Platform.OS === "android" ? "white" : Colors.accent,
 				}}
 			>
