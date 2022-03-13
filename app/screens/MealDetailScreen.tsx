@@ -31,7 +31,7 @@ const MealDetailScreen: React.FC<Props> = props => {
 	);
 };
 
-export const screenOptions: NativeStackNavigationOptions = navigationData => {
+export const screenOptions = (navigationData): NativeStackNavigationOptions => {
 	const mealId = navigationData.route.params.mealId;
 
 	const selectedMeal = MEALS.find(meal => meal.id === mealId);

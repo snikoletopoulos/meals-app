@@ -28,7 +28,7 @@ const CategoryMealsScreen: React.FC<Props> = props => {
 	return <MealList meals={displayedMeals} onSelectMeal={handleMealSelect} />;
 };
 
-export const screenOptions: NativeStackNavigationOptions = navigationData => {
+export const screenOptions = (navigationData): NativeStackNavigationOptions => {
 	const categoryId = navigationData.route.params.categoryId;
 
 	const selectedCategory = CATEGORIES.find(
