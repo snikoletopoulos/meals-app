@@ -20,6 +20,7 @@ export type MealParamList = {
 	};
 	MealDetail: {
 		mealId: string;
+		mealTitle: string;
 	};
 };
 

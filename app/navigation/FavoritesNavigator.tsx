@@ -10,6 +10,7 @@ export type FavoritesParamList = {
 	FavoritesScreen: undefined;
 	MealScreen: {
 		mealId: string;
+		mealTitle: string;
 	};
 };
 
