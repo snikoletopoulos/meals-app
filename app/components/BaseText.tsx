@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TextProps, View } from "react-native";
 import React from "react";
 
-const BaseText: React.FC = () => {
-	return <Text style={styles.text}>BaseText</Text>;
+const BaseText: React.FC = props => {
+	return <Text style={styles.text}>{props.children}</Text>;
 };
 
 export default BaseText;
