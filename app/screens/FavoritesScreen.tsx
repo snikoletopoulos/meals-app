@@ -15,14 +15,7 @@ type Props = NativeStackScreenProps<TabParamList, "Favorites">;
 const FavoritesScreen: React.FC<Props> = props => {
 	const favoriteMeals = useSelector(state => state.meals.favoriteMeals);
 
-	const handleMealSelect = (mealId: string) => {
-		props.navigation.navigate("Favorites", {
-			screen: "MealScreen",
-			params: { mealId },
-		});
-	};
-
-	return <MealList meals={favoriteMeals} onSelectMeal={handleMealSelect} />;
+	return <MealList meals={favoriteMeals} />;
 };
 
 export const screenOptions = (navigationData): NativeStackNavigationOptions => {
