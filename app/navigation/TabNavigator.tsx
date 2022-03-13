@@ -1,4 +1,4 @@
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -33,6 +33,9 @@ const navigatorOptions = {
 	},
 	screenOptions: {
 		tabBarColor: Colors.primary,
+		tabBarLabelStyle: {
+			fontFamily: "open-sans",
+		},
 	},
 };
 
@@ -48,6 +51,12 @@ const navScreens = [
 					size={tabInfo.size ?? 20}
 				/>
 			),
+			tabBarLabel:
+				Platform.OS === "android" ? (
+					<Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
+				) : (
+					"Meals"
+				),
 		},
 	},
 	{
@@ -62,6 +71,12 @@ const navScreens = [
 					size={tabInfo.size ?? 20}
 				/>
 			),
+			tabBarLabel:
+				Platform.OS === "android" ? (
+					<Text style={{ fontFamily: "open-sans-bold" }}>Favorites</Text>
+				) : (
+					"Favorites"
+				),
 		},
 	},
 ];
@@ -78,7 +93,7 @@ const TabNavigator: React.FC = () => {
 	}
 
 	return (
-		<Tab.Navigator {...navigatorOptions}>
+		<Tab.Navigator {...navigatorOptions} screenOptions={{}}>
 			{navScreens.map(screen => (
 				<Tab.Screen key={screen.name} {...screen} />
 			))}
