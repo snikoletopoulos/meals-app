@@ -3,7 +3,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Colors from "constants/colors";
 
-import FiltersScreen from "screens/FiltersScreen";
+import FiltersScreen, {
+	screenOptions as FiltersOptions,
+} from "screens/FiltersScreen";
 
 export type FiltersParamList = {
 	FiltersScreen: undefined;
@@ -30,7 +32,11 @@ const FiltersNavigator: React.FC = () => {
 				headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
 			}}
 		>
-			<Screen name="FiltersScreen" component={FiltersScreen} />
+			<Screen
+				name="FiltersScreen"
+				component={FiltersScreen}
+				options={FiltersOptions}
+			/>
 		</Navigator>
 	);
 };
