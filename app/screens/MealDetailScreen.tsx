@@ -30,15 +30,23 @@ const MealDetailScreen: React.FC<Props> = props => {
 	return (
 		<ScrollView>
 			<Image source={{ uri: selectedMeal?.imageUrl }} style={styles.image} />
-			<View style={[styles.mealRow, styles.mealDetails]}>
+			<View style={styles.details}>
 				<BaseText>{selectedMeal?.duration}m</BaseText>
 				<BaseText>{selectedMeal?.complexity.toUpperCase()}</BaseText>
 				<BaseText>{selectedMeal?.affordability.toUpperCase()}</BaseText>
 			</View>
 			<Text style={styles.title}>Ingredients</Text>
-			<Text>List of ingredients</Text>
+			{selectedMeal?.ingredients.map(ingredient => (
+				<View key={ingredient} style={styles.listItem}>
+					<BaseText>{ingredient}</BaseText>
+				</View>
+			))}
 			<Text style={styles.title}>Steps</Text>
-			<Text>List of steps...</Text>
+			{selectedMeal?.steps.map(step => (
+				<View key={step} style={styles.listItem}>
+					<BaseText>{step}</BaseText>
+				</View>
+			))}
 		</ScrollView>
 	);
 };
@@ -70,8 +78,7 @@ interface Styles {
 	image: ImageStyle;
 	details: ViewStyle;
 	title: TextStyle;
-	mealRow: ViewStyle;
-	mealDetails: ViewStyle;
+	listItem: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -92,14 +99,11 @@ const styles = StyleSheet.create<Styles>({
 		textAlign: "center",
 	},
 
-	mealRow: {
-		flexDirection: "row",
-	},
-
-	mealDetails: {
-		paddingHorizontal: 10,
-		justifyContent: "space-around",
-		alignItems: "center",
-		height: "15%",
+	listItem: {
+		marginVertical: 10,
+		marginHorizontal: 20,
+		borderColor: "#ccc",
+		borderWidth: 1,
+		padding: 10,
 	},
 });
