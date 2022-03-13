@@ -15,12 +15,15 @@ import {
 import { useSelector } from "helpers/store";
 
 import { MealParamList } from "navigation/MealsNavigator";
+import { FavoritesParamList } from "navigation/FavoritesNavigator";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HeaderButton from "components/HeaderButton";
 import BaseText from "components/BaseText";
 
-type Props = NativeStackScreenProps<MealParamList, "MealDetail">;
+type Props =
+	| NativeStackScreenProps<MealParamList, "MealDetail">
+	| NativeStackScreenProps<FavoritesParamList, "MealScreen">;
 
 const MealDetailScreen: React.FC<Props> = props => {
 	const mealId = props.route.params.mealId;
