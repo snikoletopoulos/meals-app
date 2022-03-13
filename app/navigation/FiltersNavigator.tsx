@@ -8,7 +8,9 @@ import FiltersScreen, {
 } from "screens/FiltersScreen";
 
 export type FiltersParamList = {
-	FiltersScreen: undefined;
+	FiltersScreen: {
+		save: () => void;
+	};
 };
 
 const Stack = createNativeStackNavigator<FiltersParamList>();
