@@ -9,14 +9,16 @@ import {
 	ImageStyle,
 } from "react-native";
 
-type Props = {
+import BaseText from "components/BaseText";
+
+interface Props {
 	title: string;
 	duration: number;
 	complexity: string;
 	affordability: string;
 	image: string;
 	onSelectMeal: () => void;
-};
+}
 
 const MealItem: React.FC<Props> = props => {
 	return (
@@ -36,9 +38,9 @@ const MealItem: React.FC<Props> = props => {
 						</ImageBackground>
 					</View>
 					<View style={[styles.mealRow, styles.mealDetails]}>
-						<Text>{props.duration}m</Text>
-						<Text>{props.complexity.toUpperCase()}</Text>
-						<Text>{props.affordability.toUpperCase()}</Text>
+						<BaseText>{props.duration}m</BaseText>
+						<BaseText>{props.complexity.toUpperCase()}</BaseText>
+						<BaseText>{props.affordability.toUpperCase()}</BaseText>
 					</View>
 				</View>
 			</TouchableOpacity>
