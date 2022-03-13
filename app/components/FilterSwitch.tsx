@@ -1,4 +1,11 @@
-import { StyleSheet, Text, Switch, Platform } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	Switch,
+	Platform,
+	ViewStyle,
+	View,
+} from "react-native";
 
 import Colors from "constants/colors";
 
@@ -10,7 +17,7 @@ interface Props {
 
 const FilterSwitch: React.FC<Props> = props => {
 	return (
-		<>
+		<View style={styles.filterContainer}>
 			<Text>{props.label}</Text>
 			<Switch
 				trackColor={{
@@ -20,8 +27,22 @@ const FilterSwitch: React.FC<Props> = props => {
 				value={props.value}
 				onValueChange={props.onChange}
 			/>
-		</>
+		</View>
 	);
 };
 
 export default FilterSwitch;
+
+interface Styles {
+	filterContainer: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
+	filterContainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		width: "80%",
+		marginVertical: 15,
+	},
+});
