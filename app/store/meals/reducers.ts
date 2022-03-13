@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface FavoritesState {}
+import { MEALS } from "data/dummy-data";
+import Meal from "models/meal";
 
-const initialState: FavoritesState = {};
+interface FavoritesState {
+	meals: Meal[];
+	filteredMeals: Meal[];
+	favoriteMeals: Meal[];
+}
+
+const initialState: FavoritesState = {
+	meals: MEALS,
+	filteredMeals: MEALS,
+	favoriteMeals: [],
+};
 
 const favoritesSlice = createSlice({
 	name: "meals",
