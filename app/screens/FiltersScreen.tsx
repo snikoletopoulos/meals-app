@@ -32,7 +32,7 @@ const FiltersScreen: React.FC<Props> = props => {
 
 	useEffect(() => {
 		props.navigation.setParams({ save: saveFilters });
-	}, [saveFilters, props.navigation]);
+	}, [saveFilters]);
 
 	return (
 		<View style={styles.screen}>
