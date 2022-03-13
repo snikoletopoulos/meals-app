@@ -12,6 +12,7 @@ import {
 	NativeStackNavigationOptions,
 	NativeStackScreenProps,
 } from "@react-navigation/native-stack";
+import { useSelector } from "helpers/store";
 
 import { MealParamList } from "navigation/MealsNavigator";
 import { MEALS } from "data/dummy-data";
@@ -24,8 +25,9 @@ type Props = NativeStackScreenProps<MealParamList, "MealDetail">;
 
 const MealDetailScreen: React.FC<Props> = props => {
 	const mealId = props.route.params.mealId;
-
-	const selectedMeal = MEALS.find(meal => meal.id === mealId);
+	const selectedMeal = useSelector(state =>
+		state.meals.meals.find(meal => meal.id === mealId)
+	);
 
 	return (
 		<ScrollView>

@@ -3,9 +3,10 @@ import {
 	NativeStackNavigationOptions,
 	NativeStackScreenProps,
 } from "@react-navigation/native-stack";
+import { useSelector } from "helpers/store";
 
 import { MealParamList } from "navigation/MealsNavigator";
-import { CATEGORIES, MEALS } from "data/dummy-data";
+import { CATEGORIES } from "data/dummy-data";
 
 import MealList from "components/MealList";
 
@@ -13,17 +14,13 @@ type Props = NativeStackScreenProps<MealParamList, "CategoryMeals">;
 
 const CategoryMealsScreen: React.FC<Props> = props => {
 	const categoryId = props.route.params.categoryId;
+	const displayedMeals = useSelector(state => state.meals.filteredMeals);
 
 	const handleMealSelect = (mealId: string) => {
 		props.navigation.navigate("MealDetail", {
 			mealId,
 		});
 	};
-
-	const displayedMeals = useMemo(
-		() => MEALS.filter(meal => meal.categoryIds.includes(categoryId)),
-		[categoryId]
-	);
 
 	return <MealList meals={displayedMeals} onSelectMeal={handleMealSelect} />;
 };

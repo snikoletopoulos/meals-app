@@ -1,10 +1,9 @@
-import { useMemo } from "react";
 import {
 	NativeStackScreenProps,
 	NativeStackNavigationOptions,
 } from "@react-navigation/native-stack";
+import { useSelector } from "helpers/store";
 
-import { MEALS } from "data/dummy-data";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HeaderButton from "components/HeaderButton";
@@ -14,17 +13,14 @@ import MealList from "components/MealList";
 type Props = NativeStackScreenProps<TabParamList, "Favorites">;
 
 const FavoritesScreen: React.FC<Props> = props => {
+	const favoriteMeals = useSelector(state => state.meals.favoriteMeals);
+
 	const handleMealSelect = (mealId: string) => {
 		props.navigation.navigate("Favorites", {
 			screen: "MealScreen",
 			params: { mealId },
 		});
 	};
-
-	const favoriteMeals = useMemo(
-		() => MEALS.filter(meal => ["m1", "m2"].includes(meal.id)),
-		[]
-	);
 
 	return <MealList meals={favoriteMeals} onSelectMeal={handleMealSelect} />;
 };
