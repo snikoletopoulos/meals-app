@@ -15,7 +15,6 @@ import {
 import { useSelector } from "helpers/store";
 
 import { MealParamList } from "navigation/MealsNavigator";
-import { MEALS } from "data/dummy-data";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HeaderButton from "components/HeaderButton";
@@ -25,9 +24,9 @@ type Props = NativeStackScreenProps<MealParamList, "MealDetail">;
 
 const MealDetailScreen: React.FC<Props> = props => {
 	const mealId = props.route.params.mealId;
-	const selectedMeal = useSelector(state =>
-		state.meals.meals.find(meal => meal.id === mealId)
-	);
+	const availableMeal = useSelector(state => state.meals.meals);
+
+	const selectedMeal = availableMeal.find(meal => meal.id === mealId);
 
 	return (
 		<ScrollView>
@@ -54,12 +53,10 @@ const MealDetailScreen: React.FC<Props> = props => {
 };
 
 export const screenOptions = (navigationData): NativeStackNavigationOptions => {
-	const mealId = navigationData.route.params.mealId;
-
-	const selectedMeal = MEALS.find(meal => meal.id === mealId);
+	const mealTitle = navigationData.route.params.mealTitle;
 
 	return {
-		headerTitle: selectedMeal?.title,
+		headerTitle: mealTitle,
 		headerRight: () => (
 			<HeaderButtons HeaderButtonComponent={HeaderButton}>
 				<Item
