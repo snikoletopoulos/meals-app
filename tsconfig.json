@@ -10,7 +10,9 @@
 			"screens/*": ["app/screens/*"],
 			"data/*": ["app/data/*"],
 			"models/*": ["app/models/*"],
-			"constants/*": ["app/constants/*"]
+			"constants/*": ["app/constants/*"],
+			"store/*": ["app/store/*"],
+			"types/*": ["app/types/*"]
 		}
 	},
 	"exclude": ["node_modules"]

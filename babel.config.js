@@ -15,6 +15,8 @@ module.exports = function (api) {
 						data: "./app/data",
 						models: "./app/models",
 						constants: "./app/constants",
+						store: "./app/store",
+						types: "./app/types",
 					},
 				},
 			],
