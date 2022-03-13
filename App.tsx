@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Provider } from "react-redux";
+import store from "store/index";
 import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
@@ -30,7 +32,11 @@ const App = () => {
 		);
 	}
 
-	return <AppNavigator />;
+	return (
+		<Provider store={store}>
+			<AppNavigator />
+		</Provider>
+	);
 };
 
 export default App;
