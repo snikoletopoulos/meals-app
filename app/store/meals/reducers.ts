@@ -5,7 +5,7 @@ interface FavoritesState {}
 const initialState: FavoritesState = {};
 
 const favoritesSlice = createSlice({
-	name: "favorites",
+	name: "meals",
 	initialState,
 	reducers: {},
 });
