@@ -86,7 +86,11 @@ const styles = StyleSheet.create<Styles>({
 		justifyContent: "space-around",
 	},
 
-	title: {},
+	title: {
+		fontFamily: "open-sans-bold",
+		fontSize: 22,
+		textAlign: "center",
+	},
 
 	mealRow: {
 		flexDirection: "row",
