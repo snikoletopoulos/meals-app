@@ -5,9 +5,9 @@ import Colors from "constants/colors";
 
 import { HeaderButton } from "react-navigation-header-buttons";
 
-type Props = {
+interface Props {
 	title: string;
-};
+}
 
 const CustomHeaderButton: React.FC<Props> = props => {
 	return (
