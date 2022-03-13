@@ -17,6 +17,7 @@ module.exports = function (api) {
 						constants: "./app/constants",
 						store: "./app/store",
 						types: "./app/types",
+						helpers: "./app/helpers",
 					},
 				},
 			],

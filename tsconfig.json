@@ -12,7 +12,8 @@
 			"models/*": ["app/models/*"],
 			"constants/*": ["app/constants/*"],
 			"store/*": ["app/store/*"],
-			"types/*": ["app/types/*"]
+			"types/*": ["app/types/*"],
+			"helpers/*": ["app/helpers/*"]
 		}
 	},
 	"exclude": ["node_modules"]
