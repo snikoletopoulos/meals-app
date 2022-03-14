@@ -21,7 +21,11 @@ const CategoryMealsScreen: React.FC<Props> = props => {
 		[availableMeals, categoryId]
 	);
 
-	return <MealList meals={displayedMeals} />;
+	const navigate = (params: MealParamList["MealDetail"]) => {
+		props.navigation.navigate("MealDetail", params);
+	};
+
+	return <MealList meals={displayedMeals} navigate={navigate} />;
 };
 
 export const screenOptions = (navigationData): NativeStackNavigationOptions => {

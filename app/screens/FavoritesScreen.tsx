@@ -8,7 +8,6 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { FavoritesParamList } from "navigation/FavoritesNavigator";
 
 import HeaderButton from "components/HeaderButton";
-import { TabParamList } from "navigation/TabNavigator";
 import MealList from "components/MealList";
 
 type Props = NativeStackScreenProps<FavoritesParamList, "FavoritesScreen">;
@@ -16,7 +15,11 @@ type Props = NativeStackScreenProps<FavoritesParamList, "FavoritesScreen">;
 const FavoritesScreen: React.FC<Props> = props => {
 	const favoriteMeals = useSelector(state => state.meals.favoriteMeals);
 
-	return <MealList meals={favoriteMeals} />;
+	const navigate = (params: FavoritesParamList["MealScreen"]) => {
+		props.navigation.navigate("MealScreen", params);
+	};
+
+	return <MealList meals={favoriteMeals} navigate={navigate} />;
 };
 
 export const screenOptions = (navigationData): NativeStackNavigationOptions => {
