@@ -6,13 +6,17 @@ import {
 	ViewStyle,
 	ListRenderItem,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { MealParamList } from "navigation/MealsNavigator";
+import { FavoritesParamList } from "navigation/FavoritesNavigator";
 
 import Meal from "models/meal";
 import MealItem from "./MealItem";
 
 interface Props {
 	meals: Meal[];
+	navigate: (
+		params: FavoritesParamList["MealScreen"] | MealParamList["MealDetail"]
+	) => void;
 }
 
 const MealList: React.FC<Props> = props => {
