@@ -20,20 +20,9 @@ interface Props {
 }
 
 const MealList: React.FC<Props> = props => {
-	const navigation = useNavigation();
-
-	const handleMealSelect = useCallback(
-		(mealId: string, mealTitle: string) => {
-			navigation.navigate("Favorites", {
-				screen: "MealScreen",
-				params: {
-					mealId,
-					mealTitle,
-				},
-			});
-		},
-		[navigation.navigate]
-	);
+	const handleMealSelect = useCallback((mealId: string, mealTitle: string) => {
+		props.navigate({ mealId, mealTitle });
+	}, []);
 
 	const renderMealItem: ListRenderItem<Meal> = useCallback(
 		itemData => {
