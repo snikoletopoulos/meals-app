@@ -57,20 +57,20 @@ const MealDetailScreen: React.FC<Props> = props => {
 
 	return (
 		<ScrollView>
-			<Image source={{ uri: selectedMeal?.imageUrl }} style={styles.image} />
+			<Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
 			<View style={styles.details}>
-				<BaseText>{selectedMeal?.duration}m</BaseText>
-				<BaseText>{selectedMeal?.complexity.toUpperCase()}</BaseText>
-				<BaseText>{selectedMeal?.affordability.toUpperCase()}</BaseText>
+				<BaseText>{selectedMeal.duration}m</BaseText>
+				<BaseText>{selectedMeal.complexity.toUpperCase()}</BaseText>
+				<BaseText>{selectedMeal.affordability.toUpperCase()}</BaseText>
 			</View>
 			<Text style={styles.title}>Ingredients</Text>
-			{selectedMeal?.ingredients.map(ingredient => (
+			{selectedMeal.ingredients.map(ingredient => (
 				<View key={ingredient} style={styles.listItem}>
 					<BaseText>{ingredient}</BaseText>
 				</View>
 			))}
 			<Text style={styles.title}>Steps</Text>
-			{selectedMeal?.steps.map(step => (
+			{selectedMeal.steps.map(step => (
 				<View key={step} style={styles.listItem}>
 					<BaseText>{step}</BaseText>
 				</View>
