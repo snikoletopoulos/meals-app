@@ -1,4 +1,4 @@
-import { Platform, Text } from "react-native";
+import { Platform, Text, StyleSheet, TextStyle } from "react-native";
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -50,7 +50,8 @@ const navigatorOptions: React.ComponentProps<typeof Tab["Navigator"]> &
 	},
 };
 
-const navScreens = [
+const navScreens: (React.ComponentProps<typeof Tab["Screen"]> &
+	React.ComponentProps<typeof MaterialTab["Screen"]>)[] = [
 	{
 		name: "Meals",
 		component: MealsNavigator,
