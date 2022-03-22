@@ -6,7 +6,7 @@ import Meal from "models/meal";
 interface FavoritesState {
 	meals: Meal[];
 	filteredMeals: Meal[];
-	favoriteMeals: Meal[];
+	favoriteMeals: Meal["id"][];
 }
 
 const initialState: FavoritesState = {
