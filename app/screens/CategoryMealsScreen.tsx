@@ -36,7 +36,7 @@ export const screenOptions = (navigationData): NativeStackNavigationOptions => {
 	);
 
 	return {
-		headerTitle: selectedCategory?.title,
+		headerTitle: selectedCategory?.title ?? "",
 	};
 };
 
