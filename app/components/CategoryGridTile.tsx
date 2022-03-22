@@ -16,7 +16,8 @@ interface Props {
 }
 
 const CategoryGridTile: React.FC<Props> = props => {
-	let TouchableCmp: any = TouchableOpacity;
+	let TouchableCmp: typeof TouchableOpacity | typeof TouchableNativeFeedback =
+		TouchableOpacity;
 
 	if (Platform.OS === "android" && Platform.Version >= 21) {
 		TouchableCmp = TouchableNativeFeedback;
