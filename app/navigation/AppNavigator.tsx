@@ -15,7 +15,7 @@ declare global {
 	}
 }
 
-type DrawerParamList = {
+export type DrawerParamList = {
 	MealsFavs: NavigatorScreenParams<TabParamList>;
 	Filters: NavigatorScreenParams<FiltersParamList>;
 };
