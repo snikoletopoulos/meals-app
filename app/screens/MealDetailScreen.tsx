@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -12,11 +13,12 @@ import {
 	NativeStackNavigationOptions,
 	NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-import { useSelector } from "helpers/store";
+import { useSelector, useDispatch } from "helpers/store";
 
 import { MealParamList } from "navigation/MealsNavigator";
 import { FavoritesParamList } from "navigation/FavoritesNavigator";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { actions } from "store/meals/reducers";
 
 import HeaderButton from "components/HeaderButton";
 import BaseText from "components/BaseText";
@@ -26,10 +28,32 @@ type Props =
 	| NativeStackScreenProps<FavoritesParamList, "MealScreen">;
 
 const MealDetailScreen: React.FC<Props> = props => {
+	const dispatch = useDispatch();
+
 	const mealId = props.route.params.mealId;
 	const availableMeal = useSelector(state => state.meals.meals);
 
 	const selectedMeal = availableMeal.find(meal => meal.id === mealId);
+
+	if (!selectedMeal) {
+		throw new Error("Meal not found");
+	}
+
+	useLayoutEffect(() => {
+		props.navigation.setOptions({
+			headerRight: () => (
+				<HeaderButtons HeaderButtonComponent={HeaderButton}>
+					<Item
+						title="Favorite"
+						iconName="ios-star"
+						onPress={() => {
+							dispatch(actions.toggleFavourite(selectedMeal.id));
+						}}
+					/>
+				</HeaderButtons>
+			),
+		});
+	}, []);
 
 	return (
 		<ScrollView>
@@ -60,17 +84,6 @@ export const screenOptions = (navigationData): NativeStackNavigationOptions => {
 
 	return {
 		headerTitle: mealTitle,
-		headerRight: () => (
-			<HeaderButtons HeaderButtonComponent={HeaderButton}>
-				<Item
-					title="Favorite"
-					iconName="ios-star"
-					onPress={() => {
-						console.log("mark as favorite");
-					}}
-				/>
-			</HeaderButtons>
-		),
 	};
 };
 
