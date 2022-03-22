@@ -1,4 +1,4 @@
-import { Platform, View } from "react-native";
+import { StyleSheet, Platform, View, ViewStyle } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Colors from "constants/colors";
@@ -20,7 +20,7 @@ const FavoritesNavigator: React.FC = () => {
 	const { Navigator, Screen } = Stack;
 
 	return (
-		<View style={{ flex: 1 }} collapsable={false}>
+		<View style={styles.stackContainer} collapsable={false}>
 			<Navigator
 				initialRouteName="FavoritesScreen"
 				screenOptions={{
@@ -45,3 +45,13 @@ const FavoritesNavigator: React.FC = () => {
 };
 
 export default FavoritesNavigator;
+
+interface Styles {
+	stackContainer: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
+	stackContainer: {
+		flex: 1,
+	},
+});

@@ -24,7 +24,7 @@ const CategoryGridTile: React.FC<Props> = props => {
 
 	return (
 		<View style={styles.gridItem}>
-			<TouchableCmp style={{ flex: 1 }} onPress={props.onSelect}>
+			<TouchableCmp style={styles.screen} onPress={props.onSelect}>
 				<View style={[{ backgroundColor: props.color }, styles.container]}>
 					<Text style={styles.title} numberOfLines={2}>
 						{props.title}
@@ -39,11 +39,16 @@ export default CategoryGridTile;
 
 interface Styles {
 	gridItem: ViewStyle;
+	screen: ViewStyle;
 	container: ViewStyle;
 	title: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
+	screen: {
+		flex: 1,
+	},
+
 	gridItem: {
 		flex: 1,
 		margin: 15,

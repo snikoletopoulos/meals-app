@@ -1,4 +1,4 @@
-import { Platform, View } from "react-native";
+import { StyleSheet, Platform, View, ViewStyle } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Colors from "constants/colors";
@@ -28,7 +28,7 @@ const MyStack = createNativeStackNavigator<MealParamList>();
 
 const MealsNavigator: React.FC = () => {
 	return (
-		<View style={{ flex: 1 }} collapsable={false}>
+		<View style={styles.stackContainer} collapsable={false}>
 			<MyStack.Navigator
 				initialRouteName="Categories"
 				screenOptions={{
@@ -66,3 +66,13 @@ const MealsNavigator: React.FC = () => {
 };
 
 export default MealsNavigator;
+
+interface Styles {
+	stackContainer: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
+	stackContainer: {
+		flex: 1,
+	},
+});

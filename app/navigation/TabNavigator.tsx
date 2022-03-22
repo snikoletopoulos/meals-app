@@ -20,7 +20,18 @@ export type TabParamList = {
 const Tab = createBottomTabNavigator<TabParamList>();
 const MaterialTab = createMaterialBottomTabNavigator<TabParamList>();
 
-const navigatorOptions = {
+interface Styles {
+	text: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
+	text: {
+		fontFamily: "open-sans-bold",
+	},
+});
+
+const navigatorOptions: React.ComponentProps<typeof Tab["Navigator"]> &
+	React.ComponentProps<typeof MaterialTab["Navigator"]> = {
 	initialRouteName: "Meals",
 	activeColor: "white",
 	shifting: true,
@@ -53,7 +64,7 @@ const navScreens = [
 			),
 			tabBarLabel:
 				Platform.OS === "android" ? (
-					<Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
+					<Text style={styles.text}>Meals</Text>
 				) : (
 					"Meals"
 				),
@@ -73,7 +84,7 @@ const navScreens = [
 			),
 			tabBarLabel:
 				Platform.OS === "android" ? (
-					<Text style={{ fontFamily: "open-sans-bold" }}>Favorites</Text>
+					<Text style={styles.text}>Favorites</Text>
 				) : (
 					"Favorites"
 				),
