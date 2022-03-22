@@ -6,6 +6,10 @@ const store = configureStore({
 	reducer: {
 		meals: mealsReducer,
 	},
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
 });
 
 export default store;
