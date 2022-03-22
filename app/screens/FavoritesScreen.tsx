@@ -1,5 +1,8 @@
 import { useMemo } from "react";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import {
+	NativeStackNavigationOptions,
+	NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 import { useSelector } from "helpers/store";
 
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -15,7 +18,12 @@ const FavoritesScreen: React.FC<Props> = props => {
 	const meals = useSelector(state => state.meals.meals);
 
 	const favoriteMeals = useMemo(
-		() => favoriteMealsIds.map(id => meals.find(meal => meal.id === id)),
+		() =>
+			favoriteMealsIds.map(id => {
+				const meal = meals.find(meal => meal.id === id);
+				if (!meal) throw new Error("Meal not found");
+				return meal;
+			}),
 		[favoriteMealsIds, meals]
 	);
 
