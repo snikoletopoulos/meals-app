@@ -27,7 +27,7 @@ const FiltersScreen: React.FC<Props> = props => {
 			vegetarian: isVegetarian,
 		};
 
-		console.log(appliedFilters);
+		return appliedFilters;
 	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
 	useEffect(() => {
