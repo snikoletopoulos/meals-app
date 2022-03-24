@@ -4,7 +4,7 @@ import {
 	NativeStackNavigationOptions,
 	NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-import { useSelector, useDispatch } from "helpers/store";
+import { useDispatch } from "helpers/store";
 
 import { actions } from "store/meals/reducers";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
