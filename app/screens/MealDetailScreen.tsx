@@ -48,7 +48,7 @@ const MealDetailScreen: React.FC<Props> = props => {
 				<HeaderButtons HeaderButtonComponent={HeaderButton}>
 					<Item
 						title="Favorite"
-						iconName="ios-star"
+						iconName={isFavorite ? "ios-star" : "ios-star-outline"}
 						onPress={() => {
 							dispatch(actions.toggleFavourite(selectedMeal.id));
 						}}
