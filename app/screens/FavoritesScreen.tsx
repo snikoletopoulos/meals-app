@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { View, ViewStyle, StyleSheet } from "react-native";
 import {
 	NativeStackNavigationOptions,
 	NativeStackScreenProps,
@@ -10,12 +11,21 @@ import { FavoritesParamList } from "navigation/FavoritesNavigator";
 
 import HeaderButton from "components/HeaderButton";
 import MealList from "components/MealList";
+import BaseText from "components/BaseText";
 
 type Props = NativeStackScreenProps<FavoritesParamList, "FavoritesScreen">;
 
 const FavoritesScreen: React.FC<Props> = props => {
 	const favoriteMealsIds = useSelector(state => state.meals.favoriteMeals);
 	const meals = useSelector(state => state.meals.meals);
+
+	if (!favoriteMealsIds.length) {
+		return (
+			<View style={styles.content}>
+				<BaseText>No favorite meals found. Start adding some!</BaseText>
+			</View>
+		);
+	}
 
 	const favoriteMeals = useMemo(
 		() =>
@@ -53,3 +63,15 @@ export const screenOptions = (navigationData): NativeStackNavigationOptions => {
 };
 
 export default FavoritesScreen;
+
+interface Styles {
+	content: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
+	content: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+});
