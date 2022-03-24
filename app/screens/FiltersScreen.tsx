@@ -4,7 +4,9 @@ import {
 	NativeStackNavigationOptions,
 	NativeStackScreenProps,
 } from "@react-navigation/native-stack";
+import { useSelector, useDispatch } from "helpers/store";
 
+import { actions } from "store/meals/reducers";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import FilterSwitch from "components/FilterSwitch";
@@ -14,6 +16,8 @@ import { FiltersParamList } from "navigation/FiltersNavigator";
 type Props = NativeStackScreenProps<FiltersParamList, "FiltersScreen">;
 
 const FiltersScreen: React.FC<Props> = props => {
+	const dispatch = useDispatch();
+
 	const [isGlutenFree, setIsGlutenFree] = useState(false);
 	const [isLactoseFree, setIsLactoseFree] = useState(false);
 	const [isVegan, setIsVegan] = useState(false);
@@ -21,14 +25,14 @@ const FiltersScreen: React.FC<Props> = props => {
 
 	const saveFilters = useCallback(() => {
 		const appliedFilters = {
-			glutenFree: isGlutenFree,
-			lactoseFree: isLactoseFree,
-			vegan: isVegan,
-			vegetarian: isVegetarian,
+			isGlutenFree,
+			isLactoseFree,
+			isVegan,
+			isVegetarian,
 		};
 
-		return appliedFilters;
-	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+		dispatch(actions.setFilterts(appliedFilters));
+	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
 	useEffect(() => {
 		props.navigation.setParams({ save: saveFilters });
