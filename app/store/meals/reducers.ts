@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { MEALS } from "data/dummy-data";
 import Meal from "models/meal";
+import { filterState } from "types/filters.types";
 
 interface FavoritesState {
 	meals: Meal[];
@@ -27,6 +28,28 @@ const favoritesSlice = createSlice({
 			} else {
 				state.favoriteMeals.push(payload);
 			}
+		},
+
+		setFilterts: (state, { payload }: PayloadAction<filterState>) => {
+			state.filteredMeals = state.meals.filter(meal => {
+				if (payload.isGlutenFree && !meal.isGlutenFree) {
+					return false;
+				}
+
+				if (payload.isLactoseFree && !meal.isLactoseFree) {
+					return false;
+				}
+
+				if (payload.isVegan && !meal.isVegan) {
+					return false;
+				}
+
+				if (payload.isVegetarian && !meal.isVegetarian) {
+					return false;
+				}
+
+				return true;
+			});
 		},
 	},
 });
