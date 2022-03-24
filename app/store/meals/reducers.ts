@@ -20,8 +20,9 @@ const favoritesSlice = createSlice({
 	initialState,
 	reducers: {
 		toggleFavourite: (state, { payload }: PayloadAction<Meal["id"]>) => {
-			const mealIndex = state.meals.findIndex(meal => meal.id === payload);
-			if (mealIndex) {
+			const mealIndex = state.favoriteMeals.findIndex(meal => meal === payload);
+
+			if (mealIndex >= 0) {
 				state.favoriteMeals.splice(mealIndex, 1);
 			} else {
 				state.favoriteMeals.push(payload);
