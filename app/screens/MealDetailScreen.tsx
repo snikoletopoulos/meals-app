@@ -32,6 +32,9 @@ const MealDetailScreen: React.FC<Props> = props => {
 
 	const mealId = props.route.params.mealId;
 	const availableMeal = useSelector(state => state.meals.meals);
+	const isFavorite = useSelector(state =>
+		state.meals.favoriteMeals.some(mealId => mealId === mealId)
+	);
 
 	const selectedMeal = availableMeal.find(meal => meal.id === mealId);
 
