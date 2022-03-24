@@ -56,7 +56,7 @@ const MealDetailScreen: React.FC<Props> = props => {
 				</HeaderButtons>
 			),
 		});
-	}, []);
+	}, [dispatch, actions, isFavorite]);
 
 	return (
 		<ScrollView>
