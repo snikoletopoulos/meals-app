@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 import { StyleSheet, Text, View, ViewStyle, TextStyle } from "react-native";
 import {
 	NativeStackNavigationOptions,
@@ -32,10 +32,22 @@ const FiltersScreen: React.FC<Props> = props => {
 		};
 
 		dispatch(actions.setFilterts(appliedFilters));
+		props.navigation.goBack();
 	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
-	useEffect(() => {
-		props.navigation.setParams({ save: saveFilters });
+	useLayoutEffect(() => {
+		props.navigation.setOptions({
+			headerRight: props => (
+				<HeaderButtons HeaderButtonComponent={HeaderButton}>
+					<Item
+						title="Menu"
+						color={props.tintColor}
+						iconName="ios-save"
+						onPress={saveFilters}
+					/>
+				</HeaderButtons>
+			),
+		});
 	}, [saveFilters]);
 
 	return (
@@ -62,8 +74,6 @@ const FiltersScreen: React.FC<Props> = props => {
 };
 
 export const screenOptions = (navigationData): NativeStackNavigationOptions => {
-	const saveFilters = navigationData.route.params?.save;
-
 	return {
 		headerTitle: "Filtered Meals",
 		headerLeft: props => (
@@ -75,16 +85,6 @@ export const screenOptions = (navigationData): NativeStackNavigationOptions => {
 					onPress={() => {
 						navigationData.navigation.toggleDrawer();
 					}}
-				/>
-			</HeaderButtons>
-		),
-		headerRight: props => (
-			<HeaderButtons HeaderButtonComponent={HeaderButton}>
-				<Item
-					title="Menu"
-					color={props.tintColor}
-					iconName="ios-save"
-					onPress={saveFilters}
 				/>
 			</HeaderButtons>
 		),
