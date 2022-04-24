@@ -3,8 +3,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Colors from "constants/colors";
 
-import FavoritesScreen from "screens/FavoritesScreen";
-import MealDetailScreen from "screens/MealDetailScreen";
+import FavoritesScreen, {
+	screenOptions as FavoritesOptions,
+} from "screens/FavoritesScreen";
+import MealDetailScreen, {
+	screenOptions as MealDetailOptions,
+} from "screens/MealDetailScreen";
 
 export type FavoritesParamList = {
 	FavoritesScreen: undefined;
@@ -37,8 +41,16 @@ const FavoritesNavigator: React.FC = () => {
 					headerTintColor: Platform.OS === "android" ? "white" : Colors.accent,
 				}}
 			>
-				<Screen name="FavoritesScreen" component={FavoritesScreen} />
-				<Screen name="MealScreen" component={MealDetailScreen} />
+				<Screen
+					name="FavoritesScreen"
+					component={FavoritesScreen}
+					options={FavoritesOptions}
+				/>
+				<Screen
+					name="MealScreen"
+					component={MealDetailScreen}
+					options={MealDetailOptions}
+				/>
 			</Navigator>
 		</View>
 	);
