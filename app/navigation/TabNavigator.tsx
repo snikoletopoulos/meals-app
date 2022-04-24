@@ -38,11 +38,8 @@ const navigatorOptions: React.ComponentProps<typeof Tab["Navigator"]> &
 	barStyle: {
 		backgroundColor: Colors.primary,
 	},
-	options: {
-		tabBarActiveTintColor: Colors.primary,
-		headerShown: false,
-	},
 	screenOptions: {
+		headerShown: false,
 		tabBarColor: Colors.primary,
 		tabBarLabelStyle: {
 			fontFamily: "open-sans",
@@ -105,7 +102,7 @@ const TabNavigator: React.FC = () => {
 	}
 
 	return (
-		<Tab.Navigator {...navigatorOptions} screenOptions={{}}>
+		<Tab.Navigator {...navigatorOptions}>
 			{navScreens.map(screen => (
 				<Tab.Screen key={screen.name} {...screen} />
 			))}
